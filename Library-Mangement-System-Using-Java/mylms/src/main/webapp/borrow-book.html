@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Book</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        form { max-width: 500px; margin: auto; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd; }
+        button { background-color: #00796b; color: white; cursor: pointer; }
+        .message { font-size: 18px; color: green; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h1>Borrow Book</h1>
+<form id="borrowForm">
+    <input type="text" id="bookId" placeholder="Enter Book ID" required>
+    <input type="text" id="memberId" placeholder="Enter Member ID" required>
+    <button type="submit">Borrow Book</button>
+</form>
+
+<div id="successMessage" class="message" style="display: none;">
+    You have borrowed the book successfully!
+</div>
+
+<script>
+    document.getElementById('borrowForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the form from reloading the page
+        const bookId = document.getElementById('bookId').value;
+        const memberId = document.getElementById('memberId').value;
+
+        // Simulating successful borrowing process
+        if (bookId && memberId) {
+            document.getElementById('successMessage').style.display = 'block'; // Show success message
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none'; // Hide after 3 seconds
+            }, 3000);
+            document.getElementById('borrowForm').reset(); // Reset form fields
+        }
+    });
+</script>
+</body>
+</html>

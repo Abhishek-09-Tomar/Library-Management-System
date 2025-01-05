@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        form { max-width: 500px; margin: auto; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd; }
+        button { background-color: #00796b; color: white; cursor: pointer; }
+        .message { font-size: 18px; color: green; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h1>Manage Books</h1>
+<form id="manageBooksForm">
+    <input type="text" id="bookId" placeholder="Enter Book ID" required>
+    <input type="text" id="bookTitle" placeholder="Enter Book Title" required>
+    <input type="text" id="bookAuthor" placeholder="Enter Book Author" required>
+    <button type="submit">Add/Update Book</button>
+</form>
+
+<div id="manageSuccessMessage" class="message" style="display: none;">
+    Book added/updated successfully!
+</div>
+
+<script>
+    document.getElementById('manageBooksForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the form from reloading the page
+        const bookId = document.getElementById('bookId').value;
+        const bookTitle = document.getElementById('bookTitle').value;
+        const bookAuthor = document.getElementById('bookAuthor').value;
+
+        // Simulating successful management process
+        if (bookId && bookTitle && bookAuthor) {
+            document.getElementById('manageSuccessMessage').style.display = 'block'; // Show success message
+            setTimeout(function() {
+                document.getElementById('manageSuccessMessage').style.display = 'none'; // Hide after 3 seconds
+            }, 3000);
+            document.getElementById('manageBooksForm').reset(); // Reset form fields
+        }
+    });
+</script>
+</body>
+</html>

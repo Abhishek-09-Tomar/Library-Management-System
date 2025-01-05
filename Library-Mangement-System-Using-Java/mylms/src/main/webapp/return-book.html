@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        form { max-width: 500px; margin: auto; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd; }
+        button { background-color: #00796b; color: white; cursor: pointer; }
+        .message { font-size: 18px; color: green; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h1>Return Book</h1>
+<form id="returnForm">
+    <input type="text" id="returnBookId" placeholder="Enter Book ID" required>
+    <input type="text" id="returnMemberId" placeholder="Enter Member ID" required>
+    <button type="submit">Return Book</button>
+</form>
+
+<div id="successReturnMessage" class="message" style="display: none;">
+    You have returned the book successfully!
+</div>
+
+<script>
+    document.getElementById('returnForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the form from reloading the page
+        const returnBookId = document.getElementById('returnBookId').value;
+        const returnMemberId = document.getElementById('returnMemberId').value;
+
+        // Simulating successful return process
+        if (returnBookId && returnMemberId) {
+            document.getElementById('successReturnMessage').style.display = 'block'; // Show success message
+            setTimeout(function() {
+                document.getElementById('successReturnMessage').style.display = 'none'; // Hide after 3 seconds
+            }, 3000);
+            document.getElementById('returnForm').reset(); // Reset form fields
+        }
+    });
+</script>
+</body>
+</html>

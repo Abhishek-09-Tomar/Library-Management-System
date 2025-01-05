@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Lobster&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #E0F7FA, #B3E5FC, #FFCC80);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #333;
+            transition: background 2s ease;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-family: 'Lobster', cursive;
+            color: #00796b;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-buttons button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            background: #00796b;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 12px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Social Media Box */
+        .social-box {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 255, 0, 0.4);
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 15px;
+            /* Centering the box */
+        }
+
+        .social-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00796b;
+        }
+
+        .social-box a {
+            display: block;
+            margin: 10px 0;
+            color: #00796b;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .social-box a:hover {
+            color: #FFD700;
+        }
+
+        .social-box i {
+            margin-right: 10px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: #fff;
+            padding: 30px;
+            box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-container.show {
+            right: 0;
+        }
+
+        .form-container h2 {
+            color: #00796b;
+            font-family: 'Lobster', cursive;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+            background: #f1f1f1;
+            color: #00796b;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            background: #00796b;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 12px rgba(0, 255, 0, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 2em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #f90;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Library Management System</h1>
+    <div class="header-buttons">
+        <button onclick="toggleForm('login')">Login</button>
+        <button onclick="toggleForm('signup')">Sign Up</button>
+    </div>
+</header>
+
+<!-- Main Content with Social Media Links -->
+<div class="content">
+    <div class="social-box">
+        <h3>Follow Us On Social Media</h3>
+        <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/" target="_blank"><i
+                class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Abhishek-09-Tomar/WEB-DEVELOPMENT-HUB" target="_blank"><i
+                class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.facebook.com/share/188ESnieFm/" target="_blank"><i class="fab fa-facebook"></i>
+            Facebook</a>
+        <a href="https://www.instagram.com/abhishektomar135/profilecard/?igsh=MWl6cDNxNzZ3OGtjbw=="
+           target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://x.com/AbhishekTo70974?t=CK3yGYSuIDCMMtkkjQ_CnA&s=08" target="_blank"><i
+                class="fab fa-twitter"></i>Twitter</a>
+    </div>
+</div>
+
+<!-- Sign-Up and Login Form -->
+<div id="signupForm" class="form-container">
+    <button class="close-btn" onclick="closeForm()">&#10005;</button>
+    <h2>Sign Up</h2>
+    <form id="signup">
+        <div class="form-group">
+            <label for="userID">UserID</label>
+            <input type="text" id="userID" required>
+        </div>
+        <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" required>
+        </div>
+        <div class="form-group">
+            <label for="contact">Contact Number</label>
+            <input type="text" id="contact" required>
+        </div>
+        <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">Create Account</button>
+    </form>
+</div>
+
+<div id="loginForm" class="form-container">
+    <button class="close-btn" onclick="closeForm()">&#10005;</button>
+    <h2>Login</h2>
+    <form id="login">
+        <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" required>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">Login</button>
+    </form>
+</div>
+
+<script>
+    let userDetails = {};
+
+    // Toggle Signup and Login Forms
+    function toggleForm(formType) {
+        if (formType === 'signup') {
+            document.getElementById('signupForm').classList.add('show');
+            document.getElementById('loginForm').classList.remove('show');
+        } else {
+            document.getElementById('loginForm').classList.add('show');
+            document.getElementById('signupForm').classList.remove('show');
+        }
+    }
+
+    // Close the Forms
+    function closeForm() {
+        document.getElementById('signupForm').classList.remove('show');
+        document.getElementById('loginForm').classList.remove('show');
+    }
+
+    // Signup Logic
+    document.getElementById('signup').onsubmit = function (e) {
+        e.preventDefault();
+        const userID = document.getElementById('userID').value;
+        const username = document.getElementById('signupUsername').value;
+        const contact = document.getElementById('contact').value;
+        const password = document.getElementById('signupPassword').value;
+        userDetails[username] = { password, userID, contact };
+        alert("Sign-up successful!");
+        closeForm();
+    };
+
+    // Login Logic
+    document.getElementById('login').onsubmit = function (e) {
+        e.preventDefault();
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if (userDetails[username] && userDetails[username].password === password) {
+            alert("Login successful!");
+            window.location.href = "dashboard.html"; // Redirect to Dashboard
+        } else {
+            alert("Invalid credentials!");
+        }
+    };
+</script>
+
+</body>
+
+</html>
