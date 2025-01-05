@@ -1,5 +1,3 @@
-Here's the fully updated README incorporating the **"First User Interaction Page"** section:  
-
 ---
 # 📖 **Library Management System Using Java** 
 
